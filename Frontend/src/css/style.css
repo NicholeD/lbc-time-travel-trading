@@ -1,14 +1,18 @@
 :root {
     /* css variables: https://developer.mozilla.org/en-US/docs/Web/CSS/var */
-    --primary-color: #131921;
+    --primary-color: #3366cc;
     --secondary-color: #fff;
     --error-color: rgba(194, 0, 0, 0.71);
+}
+body{
+    font-family: arial, verdana, helvetica, serif;
 }
 
 .background {
     background-color: #eaeded;
     margin: 0;
     counter-reset: section;
+
 }
 
 .header {
@@ -18,7 +22,7 @@
     align-items: center;
     background-color: var(--primary-color);
     color: var(--secondary-color);
-    padding: 0 20px;
+    padding: 10px 10px 10px 10px;
 }
 
 .header_home {
