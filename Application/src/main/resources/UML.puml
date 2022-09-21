@@ -1,0 +1,59 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+abstract class WebApplication
+
+class User{
+username: String
+userId: String
+password: String
+portfolio: Portfolio
+createUser()
+deleteUser()
+}
+
+class Portfolio{
+funds: Double
+stocks: List<Stock>
+addStock()
+removeStock()
+}
+
+class Stock{
+symbol: String
+name: String
+purchasePrice: Double
+purchaseDate: ZoneDateTime
+}
+
+database "DynamoDBUserTable" {
+}
+
+interface UserRepository
+
+class UserService{
+userRepository: UserRepository
+findUserById()
+}
+
+class UserController{
+userService: UserService
+getUser()
+createUser()
+}
+
+UserController --> UserService
+UserController --> "DynamoDBUserTable"
+
+UserService --> UserRepository
+UserService --> User
+
+User <|-- UserRepository
+
+WebApplication <|-- "DynamoDBUserTable"
+
+User <|-- Portfolio
+
+Portfolio <|- Stock
+
+@enduml
