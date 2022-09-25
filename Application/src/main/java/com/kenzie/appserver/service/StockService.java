@@ -1,35 +1,40 @@
 package com.kenzie.appserver.service;
 
-import com.kenzie.appserver.repositories.StockRepository;
-import com.kenzie.appserver.repositories.model.StockRecord;
-import com.kenzie.appserver.service.model.Stock;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.kenzie.appserver.controller.model.StockResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.IOException;
+import java.util.Map;
 
 @Service
 public class StockService {
+    ObjectMapper mapper = new ObjectMapper();
 
-    private StockRepository stockRepository;
+    @Autowired
+    private RestTemplate restTemplate;
 
-    public StockService(StockRepository stockRepository) { this.stockRepository = stockRepository;}
+    @GetMapping
+    public StockResponse getStocksBySymbol(String symbol) {
+        String url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&apikey=5DA1NYHTSAKVQ99Z&symbol=" + symbol;
+        StockResponse stockResponse = restTemplate.getForObject(url, StockResponse.class);
 
-    public List<Stock> findBySymbol(String symbol) {
-        List<Stock> stocks = new ArrayList<>();
-
-        Iterable<StockRecord> stockIterator = stockRepository.find100BySymbol(symbol);
-
-        for (int i = 0; i < 30; i++) {
-            for(StockRecord record : stockIterator) {
-                stocks.add(new Stock(record.getSymbol(),
-                        record.getName(),
-                        record.getPurchasePrice(),
-                        1,
-                        record.getPurchaseDate()));
-            }
-        }
-
-        return stocks;
+        return stockResponse;
     }
+
+    @GetMapping("/Name")
+    public String getStockNameBySymbol(String symbol) {
+        String url = "https://www.alphavantage.co/query?function=OVERVIEW&apikey=5DA1NYHTSAKVQ99Z&symbol=" + symbol;
+
+        try {
+            Map<String, String> map = mapper.readValue(url, Map.class);
+            return map.get("Name");
+        } catch (IOException e) {
+            return e.getMessage();
+        }
+    }
+
 }

@@ -3,52 +3,32 @@ package com.kenzie.appserver.controller.model;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.time.ZonedDateTime;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class StockResponse {
 
-    @JsonProperty("symbol")
-    private String symbol;
+    @JsonProperty("Meta Data")
+    private List<String> metaData;
 
-    @JsonProperty("name")
-    private String name;
+    @JsonProperty("Time Series (Daily)")
+    private Map<String, HashMap<String, String>> stocksByDay;
 
-    @JsonProperty("purchasePrice")
-    private double purchasePrice;
-
-    @JsonProperty("purchaseDate")
-    private ZonedDateTime purchaseDate;
-
-    public String getSymbol() {
-        return symbol;
+    public List<String> getMetaData() {
+        return metaData;
     }
 
-    public void setSymbol(String symbol) {
-        this.symbol = symbol;
+    public void setMetaData(List<String> metaData) {
+        this.metaData = metaData;
     }
 
-    public String getName() {
-        return name;
+    public Map<String, HashMap<String, String>> getStocksByDay() {
+        return stocksByDay;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public double getPurchasePrice() {
-        return purchasePrice;
-    }
-
-    public void setPurchasePrice(double purchasePrice) {
-        this.purchasePrice = purchasePrice;
-    }
-
-    public ZonedDateTime getPurchaseDate() {
-        return purchaseDate;
-    }
-
-    public void setPurchaseDate(ZonedDateTime purchaseDate) {
-        this.purchaseDate = purchaseDate;
+    public void setStocksByDay(Map<String, HashMap<String, String>> stocksByDay) {
+        this.stocksByDay = stocksByDay;
     }
 }
