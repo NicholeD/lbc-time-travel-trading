@@ -36,17 +36,14 @@ class UserControllerTest {
     @Test
     public void getById_Exists() throws Exception {
         String name = mockNeat.strings().valStr();
-        String password = mockNeat.strings().valStr();
         String id = mockNeat.uuids().valStr();
 
-        User user = new User(id, name, password, new Portfolio());
+        User user = new User(id, name, new Portfolio());
         User persistedUser = userService.addNewUser(user);
         mvc.perform(get("/user/{userId}", persistedUser.getUserId())
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("userId")
                         .value(is(id)))
-                .andExpect(jsonPath("password")
-                        .value(is(password)))
                 .andExpect(jsonPath("name")
                         .value(is(name)))
                 .andExpect(status().isOk());
