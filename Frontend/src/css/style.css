@@ -1,93 +1,166 @@
+@charset "utf-8";
+/*
+ * Copyright (c) 2022 All Rights Reserved
+ * Title: Time Travel Trading
+ * Authors: Scott Zastrow, Nichole Davidson, Alexander Bennett
+*
+*/
 :root {
     /* css variables: https://developer.mozilla.org/en-US/docs/Web/CSS/var */
     --primary-color: #3366cc;
-    --secondary-color: #fff;
+    --secondary-color: gray;
     --error-color: rgba(194, 0, 0, 0.71);
 }
 body{
+    margin: 0;
+    padding: 0;
+    background-color: #333333;
     font-family: arial, verdana, helvetica, serif;
 }
-
-.background {
-    background-color: #eaeded;
-    margin: 0;
-    counter-reset: section;
-
+.contentbody{
+    background-color: #ccccff;
+    margin: 0px;
 }
-
 .header {
-    /* Flexbox: https://css-tricks.com/snippets/css/a-guide-to-flexbox/ */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: var(--primary-color);
-    color: var(--secondary-color);
-    padding: 10px 10px 10px 10px;
-}
-
-.header_home {
-    font-size: 36px;
-    line-height: 40px;
-    height: 100px;
-    text-decoration: none;
-    color: var(--secondary-color);
-}
-
-.header_nav_link {
-    margin-left: 20px;
-    vertical-align: top;
-    line-height: 40px;
-}
-
-.about {
-    margin-left: 20px;
-}
-
-.button, button {
-    background: #aed9ff;
-    padding: 3px;
-    border-radius: 3px;
-    text-decoration: none;
-    color: black;
-    border: 1px solid black;
-    cursor: pointer;
-}
-
-.button:hover, button:hover {
-    background: #9cc3e4;
-}
-
-.card {
+    background-color: #003366;
     color: var(--primary-color);
-    background-color: var(--secondary-color);
-    margin: 20px;
-    padding: 10px 20px;
+    height: 80px;
+    background-image: url("https://zastrow.com/kenzie/ttt/images/headerbk.png");
+    background-size: 100%;
+}
+.sitelogo{
+    margin: 5px 0 5px 5px;
+    width: 80px;
+    height: 80px;
+    float: left;
+    background-image: url("https://zastrow.com/kenzie/ttt/images/logo3.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+.sitelogo2{
+    margin: 50px 0 5px 50px;
+    width: 100px;
+    height: 80px;
+    float: left;
+    background-image: url("https://zastrow.com/kenzie/ttt/images/logo3.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+.companyname{
+    margin: 25px 0 0 0;
+    width: 300px;
+    height: 27px;
+    background-image: url("https://zastrow.com/kenzie/ttt/images/tttname3.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    float: left;
+}
+.content{
+    height:100%;
+    padding-bottom: 10px;
+    background: url("https://zastrow.com/kenzie/ttt/images/bk4.png") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.divider{
+    width: 100%;
+    height:27px;
+    background-image: url("https://zastrow.com/kenzie/ttt/images/div2.png");
+    background-repeat: repeat-x;
 }
 
-.validated-field:invalid {
-    outline: 2px solid var(--error-color);
+.footer{
+    width: 100%;
+    height: 200px;
+    color: #9cc3e4;
+    background-color: #003366;
 }
-.validated-field:focus:invalid {
-    color: var(--error-color);
+.footer a:link, a:visited ,a:hover{
+    color: #9cc3e4;
+    text-decoration: none;
+}
+.footer a:active{
+    color: yellow;
+    text-decoration: none;
+}
+.footlogo{
+    height: 120px;
+    padding-top: 20px;
+    width: 30%;
+    float: left;
+}
+.secondlogo{
+    margin: auto;
+    width: 100px;
+    height: 80px;
+    background-image: url("https://zastrow.com/kenzie/ttt/images/logo3.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+.secondname{
+    margin: auto;
+    width: 150px;
+    height: 30px;
+    background-image: url("https://zastrow.com/kenzie/ttt/images/tttname3.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+.sitemap{
+    margin: auto;
+    width: 30%;
+}
+.product{
+    margin-right: 10px;
+    float: right;
+}
+.copyright{
+    width: 70%;
+    margin-left: 20px;
+    float: left;
+}
+.remainder{
+    width: 100%;
+    height: 10px;
+    background-color: #333;
+    background-image: url("https://zastrow.com/kenzie/ttt/images/bkdiv.png");
+    background-repeat: repeat-x;
 }
 
-.card-content {
-    max-width: 500px;
+@media only screen and (max-width: 750px){
+    .companyname{
+        width: 200px;
+    }
+    .sitelogo {
+        margin: 5px 0 5px 5px;
+        width: 50px;
+    }
+.copyright{
+    margin-top: -5px;
+}
+}
+@media only screen and (max-width: 600px) {
+    .header {
+        height: 103px;
+    }
+    .sitelogo2{
+        margin: 30px 0 5px 0;
+    }
+    .footer{
+        font-size: small;
+    }
+}
+@media only screen and (max-width: 450px) {
+    .footlogo{
+        height: 130px;
+        margin-right: 50px;
+    }
+    .product {
+        margin-right: 10px;
+    }
+.sitelogo{
+    height: 40px;
 }
 
-.card-content .form-field {
-    display: flex;
-    flex-direction: column;
-}
-
-#concert-list li {
-    margin-bottom: 1rem;
-}
-
-.state {
-    display: none;
-}
-
-.state.active {
-    display: block;
 }

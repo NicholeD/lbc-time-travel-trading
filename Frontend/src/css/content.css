@@ -1,0 +1,75 @@
+@charset "utf-8";
+/*
+ * Copyright (c) 2022 All Rights Reserved
+ * Title: Time Travel Trading
+ * Authors: Scott Zastrow, Nichole Davidson, Alexander Bennett
+*
+*/
+.temp{
+    height:500px;
+    padding-bottom: 10px;
+    background: url("https://zastrow.com/kenzie/ttt/images/bk4.png") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.overflowcontent{
+    overflow:hidden;
+}
+.text{
+    margin: 0 10px 10px 10px;
+    background-color: aliceblue;
+}
+.image{
+    margin: 0 10px 10px 10px;
+    width: 300px;
+    height: 300px;
+    background-color: gray;
+    float: right;
+}
+#form
+{
+    width: 250px;
+    height: auto;
+    margin: 20px auto 20px auto;
+    padding: 20px 5px 20px 20px;
+    font-weight: bold;
+    color: #003366;
+    border: 3px solid #003366;
+    border-radius: 10px;
+    background-color: aliceblue;
+}
+.button, button {
+    background: #aed9ff;
+    padding: 3px;
+    border-radius: 3px;
+    text-decoration: none;
+    color: black;
+    border: 1px solid black;
+    cursor: pointer;
+}
+.jiffy{
+    width: 500px;
+    height: 295px;
+    margin: 50px 50px;
+    background-image: url("https://zastrow.com/kenzie/ttt/images/jiffy.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    float: right;
+}
+@media only screen and (max-width: 900px){
+    .jiffy{
+        width: 350px;
+        height: 207px;
+    }
+}
+@media only screen and (max-width: 600px){
+    .jiffy{
+        width: 200px;
+        height: 118px;
+    }
+}
+@media only screen and (max-width: 450px){
+
+}
