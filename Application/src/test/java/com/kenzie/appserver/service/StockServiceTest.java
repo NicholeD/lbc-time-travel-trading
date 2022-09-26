@@ -4,16 +4,8 @@ import com.kenzie.appserver.controller.model.StockResponse;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.client.RestTemplate;
-
-import java.util.List;
-import java.util.Map;
 
 public class StockServiceTest {
-
-//    @Autowired
-//    private RestTemplate restTemplate = new RestTemplate();
 
     private StockService stockService;
 
