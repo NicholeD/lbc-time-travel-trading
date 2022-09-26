@@ -6,7 +6,6 @@ abstract class WebApplication
 class User{
 username: String
 userId: String
-password: String
 portfolio: Portfolio
 createUser()
 deleteUser()

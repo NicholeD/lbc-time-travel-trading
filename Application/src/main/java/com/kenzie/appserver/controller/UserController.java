@@ -39,7 +39,7 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<UserResponse> addNewUser(@RequestBody UserCreateRequest userCreateRequest) {
-        User user = new User(randomUUID().toString(), userCreateRequest.getUsername(), userCreateRequest.getPassword(), new Portfolio());
+        User user = new User(randomUUID().toString(), userCreateRequest.getUsername(),  new Portfolio());
         userService.addNewUser(user);
 
         UserResponse userResponse = new UserResponse();

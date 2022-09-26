@@ -17,6 +17,14 @@ public class Stock {
         this.purchaseDate = purchaseDate;
     }
 
+    public Stock(String symbol, String name, double purchasePrice, ZonedDateTime purchaseDate) {
+        this.symbol = symbol;
+        this.name = name;
+        this.purchasePrice = purchasePrice;
+        this.quantity = 1;
+        this.purchaseDate = purchaseDate;
+    }
+
     public String getSymbol() {
         return symbol;
     }
