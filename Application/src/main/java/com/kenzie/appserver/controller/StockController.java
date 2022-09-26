@@ -15,7 +15,7 @@ public class StockController {
     private StockService stockService;
 
     @GetMapping
-    public List<Stock> getStocks(String symbol) {
+    public List<Stock> getStocksBySymbol(String symbol) {
         final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         List<Stock> last30Days = new ArrayList<>();
 
