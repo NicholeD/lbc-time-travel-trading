@@ -11,16 +11,16 @@ import java.util.Map;
 public class StockResponse {
 
     @JsonProperty("Meta Data")
-    private List<String> metaData;
+    private Map<String, String> metaData;
 
     @JsonProperty("Time Series (Daily)")
     private Map<String, HashMap<String, String>> stocksByDay;
 
-    public List<String> getMetaData() {
+    public Map<String, String> getMetaData() {
         return metaData;
     }
 
-    public void setMetaData(List<String> metaData) {
+    public void setMetaData(Map<String, String> metaData) {
         this.metaData = metaData;
     }
 
