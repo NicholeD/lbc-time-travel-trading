@@ -9,6 +9,10 @@ module.exports = {
   },
   entry: {
     examplePage: path.resolve(__dirname, 'src', 'pages', 'examplePage.js'),
+    mainpage: path.resolve(__dirname, 'src', 'pages', 'mainpage.js'),
+    portalpage: path.resolve(__dirname, 'src', 'pages', 'portalpage.js'),
+    aboutpage: path.resolve(__dirname, 'src', 'pages', 'aboutpage.js'),
+    contactpage: path.resolve(__dirname, 'src', 'pages', 'contactpage.js')
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -31,14 +35,37 @@ module.exports = {
       filename: 'index.html',
       inject: false
     }),
+    new HtmlWebpackPlugin({
+      template: './src/portal.html',
+      filename: 'portal.html',
+      inject: false
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/about.html',
+      filename: 'about.html',
+      inject: false
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/contact.html',
+      filename: 'contact.html',
+      inject: false
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/example.html',
+      filename: 'example.html',
+      inject: false
+    }),
     new CopyPlugin({
       patterns: [
         {
           from: path.resolve('src/css'),
-          to: path.resolve("dist/css")
+          to: path.resolve("dist/css"),
+        },
+        {
+          from: path.resolve('src/images'),
+          to: path.resolve("dist/images")
         }
       ]
-    }),
-    new CleanWebpackPlugin()
+    })
   ]
 }
