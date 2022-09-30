@@ -14,5 +14,5 @@ fi
 echo "Running container: ${DYNAMODB_CONTAINER_NAME}"
 docker run --name ${DYNAMODB_CONTAINER_NAME} -p 8000:8000 -d amazon/dynamodb-local
 
-echo "Waiting 10 seconds for dynamodb to boot..."
-sleep 10
+echo "Waiting 5 seconds for dynamodb to boot..."
+sleep 5
