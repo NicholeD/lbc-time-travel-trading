@@ -10,7 +10,8 @@
     <title>Time Travel Trading</title>
     <meta name="author" content="Jiffy Labs Inc.">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><!--Sets mobile resolution-->
-    <script type="text/javascript" src="mainpage.js"></script>
+
+    <script type="text/javascript" src="stockpage.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/menu.css">
     <link rel="stylesheet" type="text/css" href="css/content.css">
@@ -43,6 +44,13 @@
         <div class="content">
             <div class="divider"></div>
             <div class="overflowcontent">
+                <!--content area-->
+                <div style="margin: 20px; height:450px">
+                <form id="formid">
+                    Search Stock:<input name="name" type="text" value="" size="30" id="searchstock"/><button type="submit">Search</button></br></br>
+                </form>
+                    <div id="stockresults"></div>
+                </div>
                 <!--content area-->
             </div>
         </div>

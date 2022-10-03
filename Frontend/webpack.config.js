@@ -12,7 +12,8 @@ module.exports = {
     mainpage: path.resolve(__dirname, 'src', 'pages', 'mainpage.js'),
     portalpage: path.resolve(__dirname, 'src', 'pages', 'portalpage.js'),
     aboutpage: path.resolve(__dirname, 'src', 'pages', 'aboutpage.js'),
-    contactpage: path.resolve(__dirname, 'src', 'pages', 'contactpage.js')
+    contactpage: path.resolve(__dirname, 'src', 'pages', 'contactpage.js'),
+    stockpage: path.resolve(__dirname, 'src', 'pages', 'stockpage.js')
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -33,7 +34,7 @@ module.exports = {
         context: [
           '/example',
           '/contact',
-            '/stock'
+            '/stocks'
         ],
         target: 'http://localhost:5001'
       }
