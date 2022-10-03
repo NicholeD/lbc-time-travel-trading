@@ -27,7 +27,17 @@ module.exports = {
     disableHostCheck: true,
     contentBase: 'packaging_additional_published_artifacts',
     // overlay shows a full-screen overlay in the browser when there are compiler errors or warnings
-    overlay: true
+    overlay: true,
+    proxy: [
+      {
+        context: [
+          '/example',
+          '/contact',
+            '/stock'
+        ],
+        target: 'http://localhost:5001'
+      }
+    ]
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -60,10 +70,6 @@ module.exports = {
         {
           from: path.resolve('src/css'),
           to: path.resolve("dist/css"),
-        },
-        {
-          from: path.resolve('src/images'),
-          to: path.resolve("dist/images")
         }
       ]
     })

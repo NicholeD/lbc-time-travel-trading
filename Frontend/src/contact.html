@@ -43,25 +43,26 @@
   <div class="content">
     <div class="divider"></div>
     <!--content area-->
-    <div id="form">
-      <form  action="" method="POST" enctype="multipart/form-data">
+    <div class="form">
+      <form  action="" method="POST" enctype="multipart/form-data" id="contactform">
         <input type="hidden" name="action" value="submit">
         Your name:</br>
-        <input name="name" type="text" value="" size="30"/></br></br>
+        <input name="name" type="text" value="" size="30" id="contactname"/></br></br>
         Your email:</br>
-        <input name="email" type="email" value="" size="30"/></br></br>
+        <input name="email" type="email" value="" size="30" id="contactemail"/></br></br>
         Subject:</br>
-        <select name="subject">
-          <option value="General">General Inquiry</option>
+        <select name="subject" id="contactsubject">
+          <option value="General" id="contactsubject">General Inquiry</option>
           <option value="Feature Request">Feature Request</option>
           <option value="Bug Report">Report A Bug</option>
         </select></br></br>
         Your message:</br>
-        <textarea name="message" rows="7" cols="30"></textarea></br></br>
+        <textarea name="message" rows="7" cols="30" id="contactmessage"></textarea></br></br>
         <input type="submit" value="Send Message"/>
         </br></br>
       </form>
     </div><!--form-->
+    <div id="result-info" style=" margin: auto;"></div>
     <!--content area-->
   </div>
 </div>
