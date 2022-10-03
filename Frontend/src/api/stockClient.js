@@ -23,7 +23,7 @@ export default class StockClient extends BaseClass{
     }
     async getStocks(symbol, errorCallback){
         try{
-            const response = await this.client.get(`/stock/${symbol}`);
+            const response = await this.client.get(`/stocks/${symbol}`);
             return response.data;
         }catch (error){
             this.handleError("getConcert", error, errorCallback)

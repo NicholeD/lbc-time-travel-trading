@@ -7,6 +7,7 @@ import DataStore from "../util/DataStore";
 import StockClient from "../api/stockClient";
 import ExampleClient from "../api/exampleClient";
 
+
 class StockPage extends BaseClass{
     constructor() {
         super();
@@ -38,9 +39,9 @@ class StockPage extends BaseClass{
 
         let symbol = document.getElementById("searchstock").value;
         this.dataStore.set("stock", null);
-
         let result = await this.client.getStocks(symbol, this.errorHandler);
         this.dataStore.set("stock", result);
+        console.log(result);
 
         if (result) {
             this.showMessage(`Got ${result.name}!`)

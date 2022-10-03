@@ -34,7 +34,7 @@ module.exports = {
         context: [
           '/example',
           '/contact',
-            '/stock'
+            '/stocks'
         ],
         target: 'http://localhost:5001'
       }
