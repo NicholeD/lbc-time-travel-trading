@@ -28,7 +28,7 @@
     background-color: gray;
     float: right;
 }
-#form
+.form
 {
     width: 250px;
     height: auto;
@@ -40,6 +40,7 @@
     border-radius: 10px;
     background-color: aliceblue;
 }
+
 .button, button {
     background: #aed9ff;
     padding: 3px;
