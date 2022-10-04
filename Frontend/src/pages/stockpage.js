@@ -25,10 +25,17 @@ class StockPage extends BaseClass{
 
         const stock = this.dataStore.get("stock");
         if (stock) {
-            resultArea.innerHTML = `
-                <div>ID: ${stock.symbol}</div>
-                <div>Name: ${stock.name}</div>
-            `
+            let stockStocks = stock.stocks;
+            let result = ""
+            result += `<div>Stock Name: ${stock.name}</div>`
+            result += `<div>Stock Symbol: ${stock.symbol}</div>`
+            result += "<ul>"
+            for (let stock of stockStocks) {
+                result += `<p>Price on ${stock.purchaseDate}: ${stock.purchasePrice}</p>`;
+            }
+            result += "</ul>";
+            resultArea.innerHTML = result
+
         } else {
             resultArea.innerHTML = "No Items found";
         }
