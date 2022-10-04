@@ -1,23 +1,30 @@
-package com.kenzie.appserver.service.model;
+package com.kenzie.appserver.repositories.model;
+
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBIndexHashKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
+import com.kenzie.appserver.service.model.Stock;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Portfolio {
-
+@DynamoDBTable(tableName = "Portfolio")
+public class PortfolioRecord {
     private String userId;
     private Double funds;
     private List<Stock> stocks;
 
-    public Portfolio() {
+    public PortfolioRecord() {
         this.funds = 100000.0;
         this.stocks = new ArrayList<>();
     }
 
+    @DynamoDBIndexHashKey(attributeName = "UserId")
     public String getUserId() { return userId; }
 
     public void setUserId(String userId) { this.userId = userId; }
 
+    @DynamoDBAttribute(attributeName = "Funds")
     public Double getFunds() {
         return funds;
     }
@@ -26,6 +33,7 @@ public class Portfolio {
         this.funds = funds;
     }
 
+    @DynamoDBAttribute(attributeName = "Stocks")
     public List<Stock> getStocks() {
         return stocks;
     }
@@ -37,4 +45,5 @@ public class Portfolio {
     public void removeStock(Stock stock) {
         this.stocks.remove(stock);
     }
+
 }
