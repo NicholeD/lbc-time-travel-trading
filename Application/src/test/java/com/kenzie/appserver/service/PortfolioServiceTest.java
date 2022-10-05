@@ -1,7 +1,5 @@
 package com.kenzie.appserver.service;
 
-import com.kenzie.appserver.repositories.PortfolioRepository;
-import com.kenzie.appserver.repositories.model.PortfolioRecord;
 import com.kenzie.appserver.service.model.Portfolio;
 import com.kenzie.appserver.service.model.Stock;
 import org.junit.jupiter.api.Assertions;
