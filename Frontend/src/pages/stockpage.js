@@ -31,13 +31,13 @@ class StockPage extends BaseClass{
             result += `<div>Stock Symbol: ${stock.symbol}</div>`
             result += "<ul>"
             for (let stock of stockStocks) {
-                result += `<p>Price on ${stock.purchaseDate}: ${stock.purchasePrice}</p>`;
+                result += `<div class="stock">${stock.purchasePrice}<br>${stock.purchaseDate}<a class="hyperlink" href="#"><span></br></span></a></div>`;
             }
             result += "</ul>";
             resultArea.innerHTML = result
 
         } else {
-            resultArea.innerHTML = "No Items found";
+            resultArea.innerHTML = "Searching...";
         }
     }
 

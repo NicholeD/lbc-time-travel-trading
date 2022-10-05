@@ -28,6 +28,24 @@
     background-color: gray;
     float: right;
 }
+.hyperlink
+{
+    width: 230px;
+    height: 100px;
+    border-radius: 15px;
+    float: left;
+    margin: 0px;
+    background-repeat:no-repeat;
+    background-size: contain;
+}
+.stock{
+    width: 250px;
+    margin: 10px;
+    padding: 5px;
+    background-color: #3366cc;
+    overflow:hidden;
+    float: left;
+}
 .form
 {
     width: 250px;
