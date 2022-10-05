@@ -31,7 +31,7 @@ class StockPage extends BaseClass{
             result += `<div>Stock Symbol: ${stock.symbol}</div>`
             result += "<ul>"
             for (let stock of stockStocks) {
-                result += `<div class="stock">${stock.purchasePrice}<br>${stock.purchaseDate}<a class="hyperlink" href="#"><span></br></span></a></div>`;
+                result += `<div class="stock"><h3>\$${stock.purchasePrice}</h3>${stock.purchaseDate}<a class="hyperlink" href="checkout.html?symbol=${stock.symbol}&currentprice=${stockStocks[0].purchasePrice}&purchaseprice=${stock.purchasePrice}&purchasedate=${stock.purchaseDate}"><span></br></span></a></div>`;
             }
             result += "</ul>";
             resultArea.innerHTML = result

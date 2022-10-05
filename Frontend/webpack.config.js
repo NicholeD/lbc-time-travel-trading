@@ -13,7 +13,8 @@ module.exports = {
     portalpage: path.resolve(__dirname, 'src', 'pages', 'portalpage.js'),
     aboutpage: path.resolve(__dirname, 'src', 'pages', 'aboutpage.js'),
     contactpage: path.resolve(__dirname, 'src', 'pages', 'contactpage.js'),
-    stockpage: path.resolve(__dirname, 'src', 'pages', 'stockpage.js')
+    stockpage: path.resolve(__dirname, 'src', 'pages', 'stockpage.js'),
+    checkoutpage: path.resolve(__dirname, 'src', 'pages', 'checkoutpage.js')
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -34,7 +35,8 @@ module.exports = {
         context: [
           '/example',
           '/contact',
-            '/stocks'
+          '/stocks',
+          '/checkout'
         ],
         target: 'http://localhost:5001'
       }
@@ -64,6 +66,11 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './src/example.html',
       filename: 'example.html',
+      inject: false
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/checkout.html',
+      filename: 'checkout.html',
       inject: false
     }),
     new CopyPlugin({

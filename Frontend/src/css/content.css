@@ -34,7 +34,9 @@
     height: 100px;
     border-radius: 15px;
     float: left;
-    margin: 0px;
+    margin: 0;
+    background-image: url("https://zastrow.com/kenzie/ttt/images/buy1.png");
+    background-position: center;
     background-repeat:no-repeat;
     background-size: contain;
 }
@@ -42,9 +44,16 @@
     width: 250px;
     margin: 10px;
     padding: 5px;
-    background-color: #3366cc;
+    border-radius: 10px;
+    background-color: aliceblue;
+    border: 3px solid #003366;
+
     overflow:hidden;
     float: left;
+}
+.stock a:hover{
+    background-image: url("https://zastrow.com/kenzie/ttt/images/buy2.png");
+    background-position: center;
 }
 .form
 {
