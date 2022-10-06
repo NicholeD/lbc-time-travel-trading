@@ -1,6 +1,7 @@
 package com.kenzie.appserver.repositories.model;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBIndexHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 import com.kenzie.appserver.service.model.Stock;
@@ -19,7 +20,7 @@ public class PortfolioRecord {
         this.stocks = new ArrayList<>();
     }
 
-    @DynamoDBIndexHashKey(attributeName = "UserId")
+    @DynamoDBHashKey(attributeName = "UserId")
     public String getUserId() { return userId; }
 
     public void setUserId(String userId) { this.userId = userId; }
