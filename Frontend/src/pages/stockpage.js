@@ -29,6 +29,7 @@ class StockPage extends BaseClass{
             let result = "";
             result += `<div>Stock Name: ${stock.name}</div>`
             result += `<div>Stock Symbol: ${stock.symbol}</div>`
+            result += `<div>Current Price: \$${stockStocks[0].purchasePrice}</div>`
             result += "<ul>"
             for (let stock of stockStocks) {
                 let date = new Date(stock.purchaseDate.toString());

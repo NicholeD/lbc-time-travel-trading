@@ -8,6 +8,10 @@ window.onload = function() {
     let queryString = new URLSearchParams(paramString);
     const stock = ["name","symbol","currentprice","purchaseprice","purchasedate"];
     let index = 0;
+    let funds = 100000.00
+    let dollars = Intl.NumberFormat('en-US');
+    let quantity = 1;
+
     for(let pair of queryString.entries()) {
         stock[index] = pair[1];
         // console.log("Key is:" + pair[0]);
@@ -15,10 +19,8 @@ window.onload = function() {
         index +=1;
     }
     let purchasedate = new Date(stock[4].toString());
-    console.log("symbol: "+stock[0]);
-    console.log("currentprice: "+stock[1]);
-    console.log("purchaseprice: "+stock[2]);
-    console.log("purchasedate: "+purchasedate.toLocaleDateString());
+
+    let net = stock[2]-stock[3];
 
     let resultArea = document.getElementById("purchase");
     let result = "";
@@ -26,7 +28,14 @@ window.onload = function() {
         result += `Symbol: ${stock[1]}<br>`
         result += `Current Price: ${stock[2]}<br>`
         result += `Purchase Price: ${stock[3]}<br>`
-        result += `Purchase Date: ${purchasedate.toLocaleDateString()}<br>`
+        result += `Purchase Date: ${purchasedate.toLocaleDateString()}<br><br>`
+        if(net > 0)
+            result += `Realized Profit: $${dollars.format(net*quantity)}<br>`
+        else
+            result += `Realized Loss: $${dollars.format(net*quantity)}<br>`
+        result +=`</br><div>Avail funds for trading: $${dollars.format(funds)}</div>`
     resultArea.innerHTML = result;
+
+
 }
 
