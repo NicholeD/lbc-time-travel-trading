@@ -26,15 +26,16 @@ class StockPage extends BaseClass{
         const stock = this.dataStore.get("stock");
         if (stock) {
             let stockStocks = stock.stocks;
-            let result = ""
+            let result = "";
             result += `<div>Stock Name: ${stock.name}</div>`
             result += `<div>Stock Symbol: ${stock.symbol}</div>`
             result += "<ul>"
             for (let stock of stockStocks) {
-                result += `<div class="stock"><h3>\$${stock.purchasePrice}</h3>${stock.purchaseDate}<a class="hyperlink" href="checkout.html?symbol=${stock.symbol}&currentprice=${stockStocks[0].purchasePrice}&purchaseprice=${stock.purchasePrice}&purchasedate=${stock.purchaseDate}"><span></br></span></a></div>`;
+                let date = new Date(stock.purchaseDate.toString());
+                result += `<div class="stock"><h3>\$${stock.purchasePrice}</h3>${date.toLocaleDateString()}<a class="hyperlink" href="checkout.html?name=${stock.name}&symbol=${stock.symbol}&currentprice=${stockStocks[0].purchasePrice}&purchaseprice=${stock.purchasePrice}&purchasedate=${stock.purchaseDate}"><span></br></span></a></div>`;
             }
             result += "</ul>";
-            resultArea.innerHTML = result
+            resultArea.innerHTML = result;
 
         } else {
             resultArea.innerHTML = "Searching...";
@@ -61,6 +62,6 @@ class StockPage extends BaseClass{
 
 const main = async () => {
     const stockPage = new StockPage();
-    stockPage.mount();
+    await stockPage.mount();
 };
 window.addEventListener('DOMContentLoaded', main);

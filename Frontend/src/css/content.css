@@ -30,7 +30,7 @@
 }
 .hyperlink
 {
-    width: 230px;
+    width: 150px;
     height: 100px;
     border-radius: 15px;
     float: left;
@@ -41,7 +41,7 @@
     background-size: contain;
 }
 .stock{
-    width: 250px;
+    width: 150px;
     margin: 10px;
     padding: 5px;
     border-radius: 10px;
@@ -61,6 +61,18 @@
     height: auto;
     margin: 20px auto 20px auto;
     padding: 20px 5px 20px 20px;
+    font-weight: bold;
+    color: #003366;
+    border: 3px solid #003366;
+    border-radius: 10px;
+    background-color: aliceblue;
+}
+.buy
+{
+    width: 250px;
+    height: auto;
+    margin: 20px auto 20px auto;
+    padding: 10px 5px 10px 10px;
     font-weight: bold;
     color: #003366;
     border: 3px solid #003366;
