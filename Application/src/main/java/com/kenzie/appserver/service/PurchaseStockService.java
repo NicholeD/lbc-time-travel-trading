@@ -1,6 +1,5 @@
 package com.kenzie.appserver.service;
 
-import com.kenzie.appserver.repositories.model.PurchasedStockRecord;
 import com.kenzie.appserver.service.model.Portfolio;
 import com.kenzie.appserver.service.model.PurchasedStock;
 import com.kenzie.appserver.service.model.Stock;
@@ -27,16 +26,6 @@ public class PurchaseStockService {
         } else {
             throw new InsufficientResourcesException("Not enough available funds.");
         }
-
-        PurchasedStockRecord purchasedStockRecord= new PurchasedStockRecord();
-        purchasedStockRecord.setUserId(userId);
-        purchasedStockRecord.setSymbol(stock.getSymbol());
-        purchasedStockRecord.setName(stock.getName());
-        purchasedStockRecord.setPurchasePrice(stock.getPurchasePrice());
-        purchasedStockRecord.setShares(stock.getQuantity());
-        purchasedStockRecord.setTotalPaid(transactionCost);
-        purchasedStockRecord.setPurchaseDate(stock.getPurchaseDate());
-        purchasedStockRecord.setOrderedDate(ZonedDateTime.now());
 
         return new PurchasedStock(userId, stock, ZonedDateTime.now());
     }
