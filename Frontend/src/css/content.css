@@ -21,6 +21,10 @@
     margin: 0 10px 10px 10px;
     background-color: aliceblue;
 }
+.text a{
+    color: #003366;
+    text-decoration: none;
+}
 .image{
     margin: 0 10px 10px 10px;
     width: 300px;
