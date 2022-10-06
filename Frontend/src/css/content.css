@@ -21,12 +21,42 @@
     margin: 0 10px 10px 10px;
     background-color: aliceblue;
 }
+.text a{
+    color: #003366;
+    text-decoration: none;
+}
 .image{
     margin: 0 10px 10px 10px;
     width: 300px;
     height: 300px;
     background-color: gray;
     float: right;
+}
+.hyperlink
+{
+    width: 150px;
+    height: 100px;
+    border-radius: 15px;
+    float: left;
+    margin: 0;
+    background-image: url("https://zastrow.com/kenzie/ttt/images/buy1.png");
+    background-position: center;
+    background-repeat:no-repeat;
+    background-size: contain;
+}
+.stock{
+    width: 150px;
+    margin: 10px;
+    padding: 5px;
+    border-radius: 10px;
+    background-color: aliceblue;
+    border: 3px solid #003366;
+    overflow:hidden;
+    float: left;
+}
+.stock a:hover{
+    background-image: url("https://zastrow.com/kenzie/ttt/images/buy2.png");
+    background-position: center;
 }
 .form
 {
@@ -39,6 +69,26 @@
     border: 3px solid #003366;
     border-radius: 10px;
     background-color: aliceblue;
+}
+.buy
+{
+    width: 90%;
+    height: auto;
+    margin: 20px auto 20px auto;
+    padding: 10px 5px 10px 10px;
+    font-weight: bold;
+    color: #003366;
+    border: 3px solid #003366;
+    border-radius: 10px;
+    background-color: aliceblue;
+}
+.qty{
+    width: 100px;
+    float: left;
+}
+#purchase{
+    width: 80%;
+    float: left;
 }
 
 .button, button {
@@ -58,6 +108,16 @@
     background-size: 100%;
     background-repeat: no-repeat;
     float: right;
+}
+.jiffyfront{
+    width: 400px;
+    height: 302px;
+
+    margin: 50px 50px;
+    background-image: url("https://zastrow.com/kenzie/ttt/images/jiffy3.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    float: left;
 }
 @media only screen and (max-width: 900px){
     .jiffy{

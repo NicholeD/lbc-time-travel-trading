@@ -25,12 +25,21 @@ class StockPage extends BaseClass{
 
         const stock = this.dataStore.get("stock");
         if (stock) {
-            resultArea.innerHTML = `
-                <div>ID: ${stock.symbol}</div>
-                <div>Name: ${stock.name}</div>
-            `
+            let stockStocks = stock.stocks;
+            let result = "";
+            result += `<div>Stock Name: ${stock.name}</div>`
+            result += `<div>Stock Symbol: ${stock.symbol}</div>`
+            result += `<div>Current Price: \$${stockStocks[0].purchasePrice}</div>`
+            result += "<ul>"
+            for (let stock of stockStocks) {
+                let date = new Date(stock.purchaseDate.toString());
+                result += `<div class="stock"><h3>\$${stock.purchasePrice}</h3>${date.toLocaleDateString()}<a class="hyperlink" href="checkout.html?name=${stock.name}&symbol=${stock.symbol}&currentprice=${stockStocks[0].purchasePrice}&purchaseprice=${stock.purchasePrice}&purchasedate=${stock.purchaseDate}"><span></br></span></a></div>`;
+            }
+            result += "</ul>";
+            resultArea.innerHTML = result;
+
         } else {
-            resultArea.innerHTML = "No Items found";
+            resultArea.innerHTML = "Searching...";
         }
     }
 
@@ -54,6 +63,6 @@ class StockPage extends BaseClass{
 
 const main = async () => {
     const stockPage = new StockPage();
-    stockPage.mount();
+    await stockPage.mount();
 };
 window.addEventListener('DOMContentLoaded', main);
