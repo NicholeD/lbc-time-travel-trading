@@ -1,3 +1,5 @@
+import DataStore from "../util/DataStore";
+
 window.onload = function() {
     getParameters();
 };
@@ -35,7 +37,38 @@ window.onload = function() {
             result += `Realized Loss: $${dollars.format(net*quantity)}<br>`
         result +=`</br><div>Avail funds for trading: $${dollars.format(funds)}</div>`
     resultArea.innerHTML = result;
+}
 
+class CheckoutPage extends BaseClass {
+        constructor() {
+            super();
+            this.bindClassMethods(['onBuy', 'renderPurchase'], this);
+            this.dataStore = new DataStore();
+        }
+        async mount() {
+            document.getElementById('buy').addEventListener("submit", this.onBuy);
+            //TODO - this.client = new CheckoutClient() or PortalClient()
+
+            this.dataStore.addChangeListener(this.renderPurchase());
+        }
+
+        // Render Methods ----------------------------------------------------
+        async renderPurchase() {
+
+
+        }
+
+        // Event Handlers ----------------------------------------------------
+
+        async onBuy(event) {
+
+
+        }
+
+        async onUpdate(event) {
+
+
+        }
 
 }
 
