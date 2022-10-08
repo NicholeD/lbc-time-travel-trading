@@ -2,14 +2,13 @@ package com.kenzie.appserver.controller;
 
 import com.kenzie.appserver.controller.model.PurchaseStockRequest;
 import com.kenzie.appserver.controller.model.PurchasedStockResponse;
+import com.kenzie.appserver.service.PortfolioService;
 import com.kenzie.appserver.service.PurchaseStockService;
 import com.kenzie.appserver.service.StockService;
+import com.kenzie.appserver.service.model.Portfolio;
 import com.kenzie.appserver.service.model.Stock;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.naming.InsufficientResourcesException;
 import java.net.URI;
@@ -20,10 +19,14 @@ public class PurchasedStockController {
 
     private PurchaseStockService purchaseStockService;
     private StockService stockService;
+    private PortfolioService portfolioService;
 
-    PurchasedStockController(PurchaseStockService purchaseStockService, StockService stockService) {
+    PurchasedStockController(PurchaseStockService purchaseStockService,
+                             StockService stockService,
+                             PortfolioService portfolioService) {
         this.purchaseStockService = purchaseStockService;
         this.stockService = stockService;
+        this.portfolioService = portfolioService;
     }
 
     @PostMapping
@@ -48,5 +51,16 @@ public class PurchasedStockController {
         purchasedStockResponse.setOrderedDate(purchasedStockRequest.getOrderDate());
 
         return ResponseEntity.created(URI.create("/purchase/" + purchasedStockResponse.getUserId())).body(purchasedStockResponse);
+    }
+
+    @GetMapping("/portfolio/{userId}")
+    public ResponseEntity<Portfolio> getPortfolioByUserId(@PathVariable("userId") String userId) {
+        Portfolio portfolio = portfolioService.findPortfolioByUserId(userId);
+
+        if (portfolio == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(portfolio);
     }
 }
