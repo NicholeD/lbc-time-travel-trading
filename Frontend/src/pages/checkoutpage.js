@@ -4,9 +4,9 @@ import PortalClient from "../api/portalClient";
 window.onload = function() {
     getParameters();
 };
-    function getParameters() {
+function getParameters() {
     let urlString =
-    window.location.href;
+        window.location.href;
     let paramString = urlString.split('?')[1];
     let queryString = new URLSearchParams(paramString);
     const stock = ["name","symbol","currentprice","purchaseprice","purchasedate"];
@@ -22,21 +22,35 @@ window.onload = function() {
         index +=1;
     }
     let purchasedate = new Date(stock[4].toString());
-
     let net = stock[2]-stock[3];
+//call result Function
+    setResult(stock, net, quantity,dollars,purchasedate, funds)
 
+    var buybutton = document.getElementById('buy')
+    buybutton.addEventListener('click', function (event){
+        console.log('@@@@@@@@@@')
+    })
+    var updatebutton = document.getElementById('update')
+    updatebutton.addEventListener('click', function (event){
+        quantity = document.getElementById('quantity').value
+        console.log('$'+quantity*net)
+        setResult(stock, net, quantity,dollars,purchasedate, funds)
+    })
+}
+
+function setResult(stock, net,quantity,dollars, purchasedate, funds){
     let resultArea = document.getElementById("purchase");
     let result = "";
-        result += `<h4>${stock[0]}</h4><br>`
-        result += `Symbol: ${stock[1]}<br>`
-        result += `Current Price: ${stock[2]}<br>`
-        result += `Purchase Price: ${stock[3]}<br>`
-        result += `Purchase Date: ${purchasedate.toLocaleDateString()}<br><br>`
-        if(net > 0)
-            result += `Realized Profit: $${dollars.format(net*quantity)}<br>`
-        else
-            result += `Realized Loss: $${dollars.format(net*quantity)}<br>`
-        result +=`</br><div>Avail funds for trading: $${dollars.format(funds)}</div>`
+    result += `<h4>${stock[0]}</h4><br>`
+    result += `Symbol: ${stock[1]}<br>`
+    result += `Current Price: ${stock[2]}<br>`
+    result += `Purchase Price: ${stock[3]}<br>`
+    result += `Purchase Date: ${purchasedate.toLocaleDateString()}<br><br>`
+    if(net > 0)
+        result += `Realized Profit: $${dollars.format(net*quantity)}<br>`
+    else
+        result += `Realized Loss: $${dollars.format(net*quantity)}<br>`
+    result +=`</br><div>Avail funds for trading: $${dollars.format(funds)}</div>`
     resultArea.innerHTML = result;
 }
 
@@ -97,15 +111,6 @@ class CheckoutPage extends BaseClass {
             } else {
                 this.errorHandler("Error purchasing stock! Try again.")
             }
-        }
-//TODO - need to figure out how to
-        async onUpdate(event) {
-            event.preventDefault();
-
-            let stock = document.getElementById("purchase").value;
-            console.log("*******" + stock);
-
-
         }
 
 }
