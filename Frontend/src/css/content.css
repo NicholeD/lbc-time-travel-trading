@@ -90,6 +90,9 @@
     border-radius: 10px;
     background-color: aliceblue;
 }
+.buy a{
+    color: #003366;
+}
 .qty{
     width: 100px;
     float: left;
