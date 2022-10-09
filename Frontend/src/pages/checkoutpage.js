@@ -1,4 +1,5 @@
 import DataStore from "../util/DataStore";
+import PortalClient from "../api/portalClient";
 
 window.onload = function() {
     getParameters();
@@ -42,25 +43,44 @@ window.onload = function() {
 class CheckoutPage extends BaseClass {
         constructor() {
             super();
-            this.bindClassMethods(['onBuy', 'renderPurchase'], this);
+            this.bindClassMethods(['onBuy', 'onUpdate', 'renderPurchase'], this);
             this.dataStore = new DataStore();
         }
         async mount() {
             document.getElementById('buy').addEventListener("submit", this.onBuy);
-            //TODO - this.client = new CheckoutClient() or PortalClient()
+            //TODO - need to create new client = checkoutClient.js file
+            this.client = new PortalClient();
 
             this.dataStore.addChangeListener(this.renderPurchase());
         }
 
         // Render Methods ----------------------------------------------------
         async renderPurchase() {
+            let resultArea = document.getElementById("purchase");
+            const stock = ["name","symbol","currentprice","purchaseprice","purchasedate"];
+            let purchasedate = new Date(stock[4].toString());
+            let net = stock[2]-stock[3];
 
+            let result = "";
+            result += `<h4>${stock[0]}</h4><br>`
+            result += `Symbol: ${stock[1]}<br>`
+            result += `Current Price: ${stock[2]}<br>`
+            result += `Purchase Price: ${stock[3]}<br>`
+            result += `Purchase Date: ${purchasedate.toLocaleDateString()}<br><br>`
+            if(net > 0)
+                result += `Realized Profit: $${dollars.format(net*quantity)}<br>`
+            else
+                result += `Realized Loss: $${dollars.format(net*quantity)}<br>`
 
+            result +=`</br><div>Avail funds for trading: $${dollars.format(funds)}</div>`
+            result += `Total Cost: $${dollars.format(100000.00 - (net*quantity))}<br>`
+            resultArea.innerHTML = result;
         }
 
         // Event Handlers ----------------------------------------------------
 
         async onBuy(event) {
+            event.preventDefault();
 
 
         }
