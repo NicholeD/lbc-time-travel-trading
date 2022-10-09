@@ -57,6 +57,7 @@ class CheckoutPage extends BaseClass {
         // Render Methods ----------------------------------------------------
         async renderPurchase() {
             let resultArea = document.getElementById("purchase");
+
             const stock = ["name","symbol","currentprice","purchaseprice","purchasedate"];
             let purchasedate = new Date(stock[4].toString());
             let net = stock[2]-stock[3];
@@ -81,11 +82,28 @@ class CheckoutPage extends BaseClass {
 
         async onBuy(event) {
             event.preventDefault();
+            let buyButton = document.getElementById('buy');
+            buyButton.innerText = 'Buying...';
+            buyButton.disabled = true;
 
+            let purchasedStockRequest = ["userid", "stockSymbol", "purchasePrice", "shares", "purchaseDate", "orderDate"];
+            this.dataStore.set("stock", null);
+            let purchased = await this.client.buyStock(purchasedStockRequest, this.errorHandler);
+            this.dataStore.set("stock", purchased);
+            console.log(purchased);
 
+            if(result) {
+                this.showMessage(`Purchased ${purchased.name} stock!`)
+            } else {
+                this.errorHandler("Error purchasing stock! Try again.")
+            }
         }
-
+//TODO - need to figure out how to
         async onUpdate(event) {
+            event.preventDefault();
+
+            let stock = document.getElementById("purchase").value;
+            console.log("*******" + stock);
 
 
         }
