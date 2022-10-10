@@ -1,6 +1,6 @@
 import BaseClass from "../util/baseClass";
 import DataStore from "../util/DataStore";
-import PortalClient from "../api/portalClient";
+import CheckoutClient from "../api/checkoutClient";
 
 window.onload = function() {
     getParameters();
@@ -27,16 +27,13 @@ function getParameters() {
 //call result Function
     setResult(stock, net, quantity,dollars,purchasedate, funds)
 
-    var buybutton = document.getElementById('buy')
-    buybutton.addEventListener('click', function (event){
-        console.log('@@@@@@@@@@')
-    })
     var updatebutton = document.getElementById('update')
     updatebutton.addEventListener('click', function (event){
         quantity = document.getElementById('quantity').value
         console.log('$'+quantity*net)
         setResult(stock, net, quantity,dollars,purchasedate, funds)
     })
+    main(stock);
 }
 
 function setResult(stock, net,quantity,dollars, purchasedate, funds){
@@ -56,58 +53,75 @@ function setResult(stock, net,quantity,dollars, purchasedate, funds){
 }
 
 class CheckoutPage extends BaseClass {
-        constructor() {
-            super();
-            this.bindClassMethods(['onBuy', 'onUpdate', 'renderPurchase'], this);
-            this.dataStore = new DataStore();
-        }
-        async mount() {
-            document.getElementById('buy').addEventListener("submit", this.onBuy);
-            //TODO - need to create new client = checkoutClient.js file
-            this.client = new PortalClient();
+     constructor() {
+         super();
+         this.bindClassMethods(['onBuy', 'renderPurchase'], this);
+         this.dataStore = new DataStore();
+     }
+     async mount(stock) {
+         document.getElementById('buy').addEventListener('click', (event) => this.onBuy(event, stock));
+         this.client = new CheckoutClient();
 
-            this.dataStore.addChangeListener(this.renderPurchase());
-        }
+         //this.dataStore.addChangeListener(this.renderPurchase());
+     }
 
-        // Render Methods ----------------------------------------------------
-        async renderPurchase() {
-            let resultArea = document.getElementById("purchase");
+     // Render Methods ----------------------------------------------------
+     async renderPurchase() {
+         let resultArea = document.getElementById("purchase");
 
-            const stock = ["name","symbol","currentprice","purchaseprice","purchasedate"];
-            let purchasedate = new Date(stock[4].toString());
-            let net = stock[2]-stock[3];
+         const stock = ["name","symbol","currentprice","purchaseprice","purchasedate"];
+         let purchasedate = new Date(stock[4].toString());
+         let net = stock[2]-stock[3];
 
-            let result = "";
-            result += `<h4>${stock[0]}</h4><br>`
-            result += `Symbol: ${stock[1]}<br>`
-            result += `Current Price: ${stock[2]}<br>`
-            result += `Purchase Price: ${stock[3]}<br>`
-            result += `Purchase Date: ${purchasedate.toLocaleDateString()}<br><br>`
-            if(net > 0)
-                result += `Realized Profit: $${dollars.format(net*quantity)}<br>`
-            else
-                result += `Realized Loss: $${dollars.format(net*quantity)}<br>`
+         let result = "";
+         result += `<h4>${stock[0]}</h4><br>`
+         result += `Symbol: ${stock[1]}<br>`
+         result += `Current Price: ${stock[2]}<br>`
+         result += `Purchase Price: ${stock[3]}<br>`
+         result += `Purchase Date: ${purchasedate.toLocaleDateString()}<br><br>`
+//         if(net > 0)
+//             result += `Realized Profit: $${dollars.format(net*quantity)}<br>`
+//         else
+//             result += `Realized Loss: $${dollars.format(net*quantity)}<br>`
 
-            result +=`</br><div>Avail funds for trading: $${dollars.format(funds)}</div>`
-            result += `Total Cost: $${dollars.format(100000.00 - (net*quantity))}<br>`
-            resultArea.innerHTML = result;
-        }
+//         result +=`</br><div>Avail funds for trading: $${dollars.format(funds)}</div>`
+//        result += `Total Cost: $${dollars.format(100000.00 - (net*quantity))}<br>`
+         resultArea.innerHTML = result;
+     }
 
-        // Event Handlers ----------------------------------------------------
+     // Event Handlers ----------------------------------------------------
 
-        async onBuy(event) {
+        async onBuy(event, stock) {
             event.preventDefault();
             let buyButton = document.getElementById('buy');
             buyButton.innerText = 'Buying...';
             buyButton.disabled = true;
 
-            let purchasedStockRequest = ["userid", "stockSymbol", "purchasePrice", "shares", "purchaseDate", "orderDate"];
+            let userId = "userId";
+            let stockSymbol = stock[1];
+            let purchasePrice = Number(stock[3]);
+            let shares = Number(document.getElementById('quantity').value);
+            let purchaseDate = stock[4];
+
+            let purchasedStockRequest = [userId, stockSymbol, purchasePrice, shares, purchaseDate];
             this.dataStore.set("stock", null);
             let purchased = await this.client.buyStock(purchasedStockRequest, this.errorHandler);
             this.dataStore.set("stock", purchased);
-            console.log(purchased);
+            let Session = window.sessionStorage;
+            Session.setItem("userId", userId);
+            if(Session.getItem("stockSymbol") != null && Session.getItem("stockSymbol") != stockSymbol){
+                Session.setItem("stockSymbol", Session.getItem("stockSymbol") + ", " + stockSymbol);
+            } else {
+                Session.setItem("stockSymbol", stockSymbol);
+            }
+            if(Session.getItem("shares") != null && Session.getItem("stockSymbol") != stockSymbol){
+                Session.setItem("shares", Session.getItem("shares") + ", " + shares);
+            } else {
+                Session.setItem("shares", shares);
+            }
+            console.log(Session);
 
-            if(result) {
+            if(purchased) {
                 this.showMessage(`Purchased ${purchased.name} stock!`)
             } else {
                 this.errorHandler("Error purchasing stock! Try again.")
@@ -115,4 +129,7 @@ class CheckoutPage extends BaseClass {
         }
 
 }
-
+const main = async (stock) => {
+    const checkoutPage = new CheckoutPage();
+    await checkoutPage.mount(stock);
+};

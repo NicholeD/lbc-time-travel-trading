@@ -13,6 +13,7 @@ export default class PortalClient extends BaseClass {
         this.props = props;
         this.clientLoaded(axios);
     }
+
     clientLoaded(client) {
         this.client = client;
         if (this.props.hasOwnProperty("onReady")) {
@@ -20,20 +21,9 @@ export default class PortalClient extends BaseClass {
         }
     }
 
-    async buyStock(purchasedStockRequest, errorCallbak) {
-        try {
-            const response = await this.client.post(`/purchasedstocks`, {
-                purchasedStockRequest: purchasedStockRequest
-            });
-            return response.data;
-        } catch (error) {
-            this.handleError("buyStock", error, errorCallbak);
-        }
-    }
-
     async getPortfolio(userId, errorCallBack) {
         try {
-            const response = await this.client.get(`/purchasedstocks/portfolio/${userId}`);
+            const response = await this.client.get(`/purchasedstocks/${userId}`);
             return response.data;
         } catch (error) {
             this.handleError("getPortfolio", error, errorCallBack);
