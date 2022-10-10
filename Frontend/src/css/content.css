@@ -78,7 +78,7 @@
     border-radius: 10px;
     background-color: aliceblue;
 }
-.buy
+.holdings
 {
     width: 90%;
     height: auto;
@@ -90,8 +90,22 @@
     border-radius: 10px;
     background-color: aliceblue;
 }
-.buy a{
+.holdings a{
     color: #003366;
+}
+.column{
+    width: 70%;
+    height: 30px;
+    margin: auto;
+}
+.section{
+    width: 18%;
+    height: 20px;
+    padding: 3px;
+    border: 1px solid #D3D3D3;
+    background-color: aliceblue;
+    overflow:hidden;
+    float: left;
 }
 .qty{
     width: 100px;
