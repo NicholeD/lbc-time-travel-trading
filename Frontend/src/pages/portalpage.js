@@ -24,6 +24,16 @@ class PortalPage extends BaseClass {
 
             let Session = window.sessionStorage;
             if (portfolio) {
+                let portfolioString = portfolio.items;
+                console.log(portfolioString);
+                for(let i = 0; i < portfolioString.length; i++) {
+                    let stocky = portfolioString[i];
+                    let stockString = stocky.symbol.s + " " + stocky.purchaseDate.s + " " + stocky.quantity.n + " " + stocky.purchasePrice.n;
+                    console.log(stockString);
+                    let stockDiv = document.createElement("div");
+                    stockDiv.innerHTML = stockString;
+                    resultArea.appendChild(stockDiv);
+                }
                 resultArea.innerHTML = `
                     <div>ID: ${Session.getItem("userId")}</div>
                     <div>Name: ${Session.getItem("stockSymbol")}</div>
@@ -47,7 +57,7 @@ class PortalPage extends BaseClass {
             this.dataStore.set("portfolio", result);
 
             if (result) {
-                this.showMessage(`Got ${result.name}!`)
+                this.showMessage("Got Portfolio!");
             } else {
                 this.errorHandler("Error doing GET!  Try again...");
             }
