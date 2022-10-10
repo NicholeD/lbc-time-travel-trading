@@ -12,7 +12,6 @@ import java.util.List;
 
 @Service
 public class PortfolioService {
-
     private PortfolioRepository portfolioRepository;
 
     public PortfolioService(PortfolioRepository portfolioRepository) {

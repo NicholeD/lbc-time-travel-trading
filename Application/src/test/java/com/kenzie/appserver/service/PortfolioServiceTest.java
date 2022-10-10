@@ -16,7 +16,6 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.*;
 
 public class PortfolioServiceTest {
-
     private PortfolioRepository portfolioRepository;
     private PortfolioService portfolioService;
 
@@ -54,7 +53,6 @@ public class PortfolioServiceTest {
         //WHEN & THEN
         Assertions.assertThrows(ResponseStatusException.class,
                 () -> portfolioService.findPortfolioByUserId(userId));
-
     }
 
     @Test
