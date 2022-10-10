@@ -23,7 +23,7 @@ import java.util.HashMap;
 public class PurchasedStockController {
 
     private PurchaseStockService purchaseStockService;
-    private StockService stockService = new StockService();
+    private StockService stockService;
     private PortfolioService portfolioService;
     AmazonDynamoDB client = AmazonDynamoDBClientBuilder.standard().build();
     ObjectMapper objectMapper = new ObjectMapper();
@@ -53,6 +53,9 @@ public class PurchasedStockController {
         HashMap<String, AttributeValue> keyToGet = new HashMap<String, AttributeValue>();
         keyToGet.put("stockId", new AttributeValue(purchasedStockRequest.getUserId()));
         keyToGet.put("symbol", new AttributeValue(purchasedStockRequest.getStockSymbol()));
+        keyToGet.put("purchasePrice", new AttributeValue().withN(Double.toString(purchasedStockRequest.getPurchasePrice())));
+        keyToGet.put("quantity", new AttributeValue().withN(Integer.toString(purchasedStockRequest.getShares())));
+        keyToGet.put("purchaseDate", new AttributeValue(purchasedStockRequest.getPurchaseDate()));
         client.putItem("Portfolio", keyToGet);
 
         return ResponseEntity.created(URI.create("/purchasedstocks/" + purchasedStockResponse.getUserId())).body(purchasedStockResponse);

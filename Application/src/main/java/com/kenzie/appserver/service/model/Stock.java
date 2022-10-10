@@ -9,16 +9,21 @@ import java.time.ZonedDateTime;
 
 @DynamoDBTable(tableName = "Portfolio")
 public class Stock {
-    @DynamoDBHashKey(attributeName = "symbol")
+
+    @DynamoDBRangeKey(attributeName = "symbol")
     private final String symbol;
-    @DynamoDBRangeKey(attributeName = "stockId")
+
+    @DynamoDBHashKey(attributeName = "id")
     private final String name;
+
     @DynamoDBAttribute(attributeName = "purchasePrice")
     private final double purchasePrice;
+
     @DynamoDBAttribute(attributeName = "quantity")
-    private final int quantity;
+    private final double quantity;
+
     @DynamoDBAttribute(attributeName = "purchaseDate")
-    private final String purchaseDate;
+    private final ZonedDateTime purchaseDate;
 
     public Stock(String symbol, String name, double purchasePrice, int quantity, String purchaseDate) {
         this.symbol = symbol;
