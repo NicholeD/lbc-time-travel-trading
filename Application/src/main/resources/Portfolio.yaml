@@ -5,12 +5,12 @@ Resources:
       "AttributeDefinitions":
         - "AttributeName": "symbol"
           "AttributeType": "S"
-        - "AttributeName": "stockId"
+        - "AttributeName": "id"
           "AttributeType": "S"
       "KeySchema":
-        - "AttributeName": "symbol"
+        - "AttributeName": "id"
           "KeyType": "HASH"
-        - "AttributeName": "stockId"
+        - "AttributeName": "symbol"
           "KeyType": "RANGE"
       PointInTimeRecoverySpecification:
         PointInTimeRecoveryEnabled: false
