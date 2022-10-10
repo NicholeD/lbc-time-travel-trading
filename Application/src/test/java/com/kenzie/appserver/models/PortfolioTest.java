@@ -32,7 +32,7 @@ public class PortfolioTest {
     public void portfolio_canAddStocks() {
         //GIVEN
         Portfolio portfolio = new Portfolio();
-        Stock stock = new Stock("TEST", "testing stock", 1.0, 3, ZonedDateTime.now());
+        Stock stock = new Stock("TEST", "testing stock", 1.0, 3, "ZonedDateTime.now()");
         //WHEN
         portfolio.addStock(stock);
         //THEN
@@ -43,7 +43,7 @@ public class PortfolioTest {
     public void portfolio_canRemoveStocks() {
         //GIVEN
         Portfolio portfolio = new Portfolio();
-        Stock stock = new Stock("TEST", "testing stock", 1.0, 3, ZonedDateTime.now());
+        Stock stock = new Stock("TEST", "testing stock", 1.0, 3, "ZonedDateTime.now()");
         portfolio.addStock(stock);
         //WHEN
         portfolio.removeStock(stock);

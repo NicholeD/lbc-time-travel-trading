@@ -20,10 +20,10 @@ public class Stock {
     private final double purchasePrice;
 
     @DynamoDBAttribute(attributeName = "quantity")
-    private final double quantity;
+    private final int quantity;
 
     @DynamoDBAttribute(attributeName = "purchaseDate")
-    private final ZonedDateTime purchaseDate;
+    private final String purchaseDate;
 
     public Stock(String symbol, String name, double purchasePrice, int quantity, String purchaseDate) {
         this.symbol = symbol;
