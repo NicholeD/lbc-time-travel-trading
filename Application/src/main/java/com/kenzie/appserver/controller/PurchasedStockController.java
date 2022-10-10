@@ -56,6 +56,7 @@ public class PurchasedStockController {
         keyToGet.put("quantity", new AttributeValue().withN(Integer.toString(purchasedStockRequest.getShares())));
         keyToGet.put("purchaseDate", new AttributeValue(purchasedStockRequest.getPurchaseDate()));
         keyToGet.put("purchasePrice", new AttributeValue().withN(Double.toString(purchasedStockRequest.getPurchasePrice())));
+
         client.putItem("Portfolio", keyToGet);
 
         return ResponseEntity.created(URI.create("/purchasedstocks/" + purchasedStockResponse.getUserId())).body(purchasedStockResponse);
