@@ -74,6 +74,4 @@ public class PurchasedStockServiceTest {
         Assertions.assertThrows(InsufficientResourcesException.class,
                 () -> purchaseStockService.purchaseStock(userId, stock));
     }
-
-
 }

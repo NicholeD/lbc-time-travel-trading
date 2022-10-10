@@ -31,5 +31,4 @@ public class PurchaseStockService {
 
         return new PurchasedStock(userId, stock, ZonedDateTime.now());
     }
-
 }
