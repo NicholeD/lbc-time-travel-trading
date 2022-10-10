@@ -100,11 +100,17 @@
 }
 .section{
     width: 18%;
-    height: 20px;
     padding: 3px;
-    border: 1px solid #D3D3D3;
+    border: solid #D3D3D3;
+    border-width: 1px 1px 0 1px;
     background-color: aliceblue;
     overflow:hidden;
+    float: left;
+}
+.portend{
+    width: 100%;
+    height: 5px;
+    background-color: #D3D3D3;
     float: left;
 }
 .qty{
@@ -162,6 +168,12 @@
         width: 300px;
         height: 227px;
     }
+    .column{
+        width: 90%;
+    }
+    .section{
+        font-size: smaller;
+    }
 }
 @media only screen and (max-width: 600px){
     .jiffy{
@@ -171,6 +183,12 @@
     .jiffyfront{
         width: 250px;
         height: 189px;
+    }
+    .section{
+        font-size: xx-small;
+    }
+    .column{
+        width: 100%;
     }
 }
 @media only screen and (max-width: 450px){
