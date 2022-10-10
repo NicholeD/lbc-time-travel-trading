@@ -18,13 +18,13 @@ public class PurchasedStockResponse {
     @JsonProperty("purchasePrice")
     private double purchasePrice;
     @JsonProperty("shares")
-    private double shares;
+    private int shares;
     @JsonProperty("totalPaid")
     private double totalPaid;
     @JsonProperty("purchaseDate")
-    private ZonedDateTime purchaseDate;
-    @JsonProperty("orderedDate")
-    private ZonedDateTime orderedDate;
+    private String purchaseDate;
+    @JsonProperty("orderDate")
+    private String orderedDate;
 
     public String getUserId() { return userId; }
 
@@ -54,25 +54,25 @@ public class PurchasedStockResponse {
         this.purchasePrice = purchasePrice;
     }
 
-    public double getShares() { return shares; }
+    public int getShares() { return shares; }
 
-    public void setShares(double shares) { this.shares = shares; }
+    public void setShares(int shares) { this.shares = shares; }
 
     public double getTotalPaid() { return totalPaid; }
 
     public void setTotalPaid(double totalPaid) { this.totalPaid = totalPaid; }
 
-    public ZonedDateTime getPurchaseDate() {
+    public String getPurchaseDate() {
         return purchaseDate;
     }
 
-    public void setPurchaseDate(ZonedDateTime purchaseDate) {
+    public void setPurchaseDate(String purchaseDate) {
         this.purchaseDate = purchaseDate;
     }
 
-    public ZonedDateTime getOrderedDate() { return orderedDate; }
+    public String getOrderedDate() { return orderedDate; }
 
-    public void setOrderedDate(ZonedDateTime orderedDate) { this.orderedDate = orderedDate; }
+    public void setOrderedDate(String orderedDate) { this.orderedDate = orderedDate; }
 
     @Override
     public int hashCode() {

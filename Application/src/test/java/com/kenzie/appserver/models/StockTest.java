@@ -7,13 +7,14 @@ import java.time.ZonedDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.springframework.test.util.AssertionErrors.assertNull;
 
 public class StockTest {
     @Test
     public void stock_canCreateStock() {
         //GIVEN
         //WHEN
-        Stock stock = new Stock("TEST", "testing stock", 1.0, 3, ZonedDateTime.now());
+        Stock stock = new Stock("TEST", "testing stock", 1.0, 3, "ZonedDateTime.now()");
         //THEN
         assertNotNull(stock);
     }
@@ -21,13 +22,13 @@ public class StockTest {
     @Test
     public void stock_canGetMethods() {
         //GIVEN
-        Stock stock = new Stock("TEST", "testing stock", 1.0, 3, ZonedDateTime.now());
+        Stock stock = new Stock("TEST", "testing stock", 1.0, 3, "2020-01-01");
         //WHEN
         String symbol = stock.getSymbol();
         String name = stock.getName();
         double purchasePrice = stock.getPurchasePrice();
         double quantity = stock.getQuantity();
-        ZonedDateTime purchaseDate = stock.getPurchaseDate();
+        String purchaseDate = stock.getPurchaseDate();
         //THEN
         assertEquals(symbol, "TEST", "Symbol does not match, check getSymbol method");
         assertEquals(name, "testing stock", "Name does not match, check getName method");

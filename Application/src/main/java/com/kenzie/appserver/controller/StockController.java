@@ -49,7 +49,7 @@ public class StockController {
         for(Map.Entry<String, HashMap<String, String>> day : stocksByDay.entrySet()) {
             Stock stock = new Stock(symbol, name,
                     Double.valueOf(day.getValue().get("4. close")),
-                    convertDate(day.getKey()));
+                    (day.getKey()));
             stocks.add(stock);
         }
 
