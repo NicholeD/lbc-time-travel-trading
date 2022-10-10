@@ -36,7 +36,6 @@ public class PortfolioService {
         double newFunds = portfolio.getFunds() - totalCost;
         PortfolioRecord portfolioRecord = new PortfolioRecord();
         portfolioRecord.setUserId(portfolio.getUserId());
-        portfolioRecord.setFunds(portfolio.getFunds());
         portfolioRecord.addStock(stock);
         portfolioRecord.setFunds(newFunds);
 
