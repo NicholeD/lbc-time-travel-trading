@@ -36,7 +36,7 @@ module.exports = {
           '/example',
           '/contact',
           '/stocks',
-          '/checkout'
+          '/purchasedstocks',
         ],
         target: 'http://localhost:5001'
       }

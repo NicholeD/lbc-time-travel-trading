@@ -21,10 +21,10 @@ public class PurchaseStockRequest {
     private int shares;
 
     @JsonProperty("purchaseDate")
-    private ZonedDateTime purchaseDate;
+    private String purchaseDate;
 
     @JsonProperty("orderDate")
-    private ZonedDateTime orderDate;
+    private String orderDate;
 
     public String getUserId() {
         return userId;
@@ -58,19 +58,19 @@ public class PurchaseStockRequest {
         this.shares = shares;
     }
 
-    public ZonedDateTime getPurchaseDate() {
+    public String getPurchaseDate() {
         return purchaseDate;
     }
 
-    public void setPurchaseDate(ZonedDateTime purchaseDate) {
+    public void setPurchaseDate(String purchaseDate) {
         this.purchaseDate = purchaseDate;
     }
 
-    public ZonedDateTime getOrderDate() {
+    public String getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(ZonedDateTime orderDate) {
+    public void setOrderDate(String orderDate) {
         this.orderDate = orderDate;
     }
 }

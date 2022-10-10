@@ -2,32 +2,31 @@
 // * Title: Time Travel Trading
 // * Authors: Scott Zastrow, Nichole Davidson, Alexander Bennett
 
-
-import BaseClass from "../util/baseClass";
+import BaseClass from "../util/baseClass"
 import axios from 'axios'
 
-export default class StockClient extends BaseClass{
+export default class PortalClient extends BaseClass {
     constructor(props = {}) {
         super();
-        const methodsToBind = ['clientLoaded', 'getStocks'];
+        const methodsToBind = ['clientLoaded', 'getPortfolio'];
         this.bindClassMethods(methodsToBind, this);
         this.props = props;
         this.clientLoaded(axios);
-
     }
+
     clientLoaded(client) {
         this.client = client;
-        if (this.props.hasOwnProperty("onReady")){
+        if (this.props.hasOwnProperty("onReady")) {
             this.props.onReady();
         }
     }
-    async getStocks(symbol, errorCallback){
-        try{
-            const response = await this.client.get(`/stocks/${symbol}`);
-            console.log(response);
+
+    async getPortfolio(userId, errorCallBack) {
+        try {
+            const response = await this.client.get(`/purchasedstocks/${userId}`);
             return response.data;
-        }catch (error){
-            this.handleError("getConcert", error, errorCallback)
+        } catch (error) {
+            this.handleError("getPortfolio", error, errorCallBack);
         }
     }
 
