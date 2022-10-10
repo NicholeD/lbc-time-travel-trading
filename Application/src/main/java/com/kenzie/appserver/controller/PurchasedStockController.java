@@ -51,7 +51,7 @@ public class PurchasedStockController {
         purchasedStockResponse.setOrderedDate(purchasedStockRequest.getOrderDate());
 
         HashMap<String, AttributeValue> keyToGet = new HashMap<String, AttributeValue>();
-        keyToGet.put("stockId", new AttributeValue(purchasedStockRequest.getUserId()));
+        keyToGet.put("id", new AttributeValue(purchasedStockRequest.getUserId()));
         keyToGet.put("symbol", new AttributeValue(purchasedStockRequest.getStockSymbol()));
         keyToGet.put("purchasePrice", new AttributeValue().withN(Double.toString(purchasedStockRequest.getPurchasePrice())));
         keyToGet.put("quantity", new AttributeValue().withN(Integer.toString(purchasedStockRequest.getShares())));
