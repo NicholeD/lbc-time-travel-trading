@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.time.ZonedDateTime;
 
@@ -41,6 +42,19 @@ public class PortfolioServiceTest {
 
         //THEN
         Assertions.assertEquals(portfolio.getStocks(), portfolioRecord.getStocks());
+    }
+
+    @Test
+    void findPortfolioByUserId_nullPortfolioRecord_throwsException() {
+        //GIVEN
+        String userId = "abc123";
+
+        when(portfolioRepository.findByUserId(any())).thenReturn(null);
+
+        //WHEN & THEN
+        Assertions.assertThrows(ResponseStatusException.class,
+                () -> portfolioService.findPortfolioByUserId(userId));
+
     }
 
     @Test

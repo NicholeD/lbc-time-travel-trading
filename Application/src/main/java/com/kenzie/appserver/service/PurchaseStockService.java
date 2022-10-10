@@ -3,7 +3,9 @@ package com.kenzie.appserver.service;
 import com.kenzie.appserver.service.model.Portfolio;
 import com.kenzie.appserver.service.model.PurchasedStock;
 import com.kenzie.appserver.service.model.Stock;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.naming.InsufficientResourcesException;
 import java.time.ZonedDateTime;

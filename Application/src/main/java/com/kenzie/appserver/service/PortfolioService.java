@@ -4,7 +4,9 @@ import com.kenzie.appserver.repositories.PortfolioRepository;
 import com.kenzie.appserver.repositories.model.PortfolioRecord;
 import com.kenzie.appserver.service.model.Portfolio;
 import com.kenzie.appserver.service.model.Stock;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -19,6 +21,10 @@ public class PortfolioService {
 
     public Portfolio findPortfolioByUserId(String userId) {
         PortfolioRecord portfolioRecord = portfolioRepository.findByUserId(userId);
+
+        if(portfolioRecord == null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The portfolioRecord is null");
+        }
 
         Portfolio portfolio = new Portfolio();
         portfolio.setFunds(portfolioRecord.getFunds());
