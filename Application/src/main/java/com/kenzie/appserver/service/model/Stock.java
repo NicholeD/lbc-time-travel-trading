@@ -10,10 +10,10 @@ import java.time.ZonedDateTime;
 @DynamoDBTable(tableName = "Portfolio")
 public class Stock {
 
-    @DynamoDBHashKey(attributeName = "symbol")
+    @DynamoDBRangeKey(attributeName = "symbol")
     private final String symbol;
 
-    @DynamoDBRangeKey(attributeName = "stockId")
+    @DynamoDBHashKey(attributeName = "id")
     private final String name;
 
     @DynamoDBAttribute(attributeName = "purchasePrice")
@@ -25,7 +25,7 @@ public class Stock {
     @DynamoDBAttribute(attributeName = "purchaseDate")
     private final ZonedDateTime purchaseDate;
 
-    public Stock(String symbol, String name, double purchasePrice, double quantity, ZonedDateTime purchaseDate) {
+    public Stock(String symbol, String name, double purchasePrice, int quantity, String purchaseDate) {
         this.symbol = symbol;
         this.name = name;
         this.purchasePrice = purchasePrice;
@@ -33,7 +33,7 @@ public class Stock {
         this.purchaseDate = purchaseDate;
     }
 
-    public Stock(String symbol, String name, double purchasePrice, ZonedDateTime purchaseDate) {
+    public Stock(String symbol, String name, double purchasePrice, String purchaseDate) {
         this.symbol = symbol;
         this.name = name;
         this.purchasePrice = purchasePrice;
@@ -53,11 +53,11 @@ public class Stock {
         return purchasePrice;
     }
 
-    public double getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 
-    public ZonedDateTime getPurchaseDate() {
+    public String getPurchaseDate() {
         return purchaseDate;
     }
 }
