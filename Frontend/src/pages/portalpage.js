@@ -24,24 +24,25 @@ class PortalPage extends BaseClass {
 
             let Session = window.sessionStorage;
             if (portfolio) {
-                let portfolioString = portfolio.items;
-                console.log(portfolioString);
-                for(let i = 0; i < portfolioString.length; i++) {
-                    let stocky = portfolioString[i];
-                    let stockString = stocky.symbol.s + " " + stocky.purchaseDate.s + " " + stocky.quantity.n + " " + stocky.purchasePrice.n;
-                    console.log(stockString);
-                    let stockDiv = document.createElement("div");
-                    stockDiv.innerHTML = stockString;
-                    resultArea.appendChild(stockDiv);
+                console.log(portfolio);
+                let portfolioStocks = portfolio.items;
+                let count = 0;
+                const cells = ["cellA1", "cellA2", "cellA3", "cellA4", "cellA5", "cellB1", "cellB2", "cellB3", "cellB4", "cellB5", "cellC1", "cellC2", "cellC3", "cellC4", "cellC5"];
+                for(let i = 0; i < 15; i+=5){
+                    let div = document.getElementById(cells[i]);
+                    let div2 = document.getElementById(cells[i+1]);
+                    let div3 = document.getElementById(cells[i+2]);
+                    let div4 = document.getElementById(cells[i+3]);
+                    let div5 = document.getElementById(cells[i+4]);
+                    div.innerHTML = portfolioStocks[count].symbol.s;
+                    div2.innerHTML = portfolioStocks[count].quantity.n;
+                    div3.innerHTML = portfolioStocks[count].purchasePrice.n;
+                    div5.innerHTML = portfolioStocks[count].purchaseDate.s;
+                    div4.innerHTML = portfolioStocks[count].quantity.n * portfolioStocks[count].purchasePrice.n;
+                    count++;
                 }
-                resultArea.innerHTML = `
-                    <div>ID: ${Session.getItem("userId")}</div>
-                    <div>Name: ${Session.getItem("stockSymbol")}</div>
-                    <div>Quantity: ${Session.getItem("shares")}</div>
-                    <div>Result: ${portfolio}</div>
-                `
             } else {
-                resultArea.innerHTML = "No Item";
+                resultArea.innerHTML = "";
             }
         }
 
@@ -65,8 +66,8 @@ class PortalPage extends BaseClass {
 }
 
 const main = async () => {
-    const examplePage = new PortalPage();
-    examplePage.mount();
+    const portalPage = new PortalPage();
+    portalPage.mount();
+    console.log("Mounted!");
 };
-
 window.addEventListener('DOMContentLoaded', main);
