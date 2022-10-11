@@ -9,7 +9,6 @@ import com.kenzie.appserver.controller.model.PurchasedStockResponse;
 import com.kenzie.appserver.service.PortfolioService;
 import com.kenzie.appserver.service.PurchaseStockService;
 import com.kenzie.appserver.service.StockService;
-import com.kenzie.appserver.service.model.Portfolio;
 import com.kenzie.appserver.service.model.Stock;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -62,16 +61,8 @@ public class PurchasedStockController {
     }
 
     @GetMapping("/{userId}")
-    public ResponseEntity<Portfolio> getPortfolioByUserId(@PathVariable("userId") String userId) {
-        Portfolio portfolio = new Portfolio();
-        portfolio.setUserId(userId);
-        portfolio.setFunds(10000.00);
-        portfolio.addStock(new Stock("AAPL", "Apple", 100.00, 10, "2020-01-01"));
-
-        return ResponseEntity.ok(portfolio);
-//        DynamoDBMapper mapper = new DynamoDBMapper(client);
-//        DynamoDBScanExpression scanExpression = new DynamoDBScanExpression();
-//        PaginatedScanList<Stock> orderList = mapper.scan(Stock.class, scanExpression);
-//        return ResponseEntity.ok(orderList);
+    public ResponseEntity<ScanResult> getPortfolioByUserId(@PathVariable("userId") String userId) {
+        ScanResult result = client.scan("Portfolio", null, null);
+        return ResponseEntity.ok(result);
     }
 }
