@@ -35,7 +35,7 @@ public class PurchasedStockServiceTest {
     void purchaseStock() throws InsufficientResourcesException {
         //GIVEN
         String userId = randomUUID().toString();
-        Stock stock = new Stock("symbol", "name", 123.00, 1.00, ZonedDateTime.now());
+        Stock stock = new Stock("symbol", "name", 123.00, 1, "ZonedDateTime.now()");
 
         PurchasedStock purchasedStock = new PurchasedStock(userId, stock, ZonedDateTime.now());
         Portfolio portfolio = new Portfolio();
@@ -58,7 +58,7 @@ public class PurchasedStockServiceTest {
     void purchaseStock_InsufficientFunds_throwsException() throws InsufficientResourcesException {
         //GIVEN
         String userId = randomUUID().toString();
-        Stock stock = new Stock("symbol", "name", 123.00, 1.00, ZonedDateTime.now());
+        Stock stock = new Stock("symbol", "name", 123.00, 1, "ZonedDateTime.now()");
 
         PurchasedStock purchasedStock = new PurchasedStock(userId, stock, ZonedDateTime.now());
         Portfolio portfolio = new Portfolio();

@@ -29,7 +29,7 @@ public class PortfolioServiceTest {
     void findPortfolioByUserId() {
         //GIVEN
         String userId = "abc123";
-        Stock stock = new Stock("symbol", "name", 123.00, 1.0, ZonedDateTime.now());
+        Stock stock = new Stock("symbol", "name", 123.00, 1, "ZonedDateTime.now()");
         PortfolioRecord portfolioRecord = new PortfolioRecord();
         portfolioRecord.setUserId(userId);
         portfolioRecord.addStock(stock);
@@ -59,7 +59,7 @@ public class PortfolioServiceTest {
     void updatePortfolio() {
         //GIVEN
         String userId = "abc123";
-        Stock stock = new Stock("symbol", "name", 123.00, 1.0, ZonedDateTime.now());
+        Stock stock = new Stock("symbol", "name", 123.00, 1, "ZonedDateTime.now()");
         double totalCost = stock.getQuantity() * stock.getPurchasePrice();
 
         ArgumentCaptor<PortfolioRecord> portfolioRecordCaptor = ArgumentCaptor.forClass(PortfolioRecord.class);
