@@ -58,6 +58,8 @@
     background-image: url("https://zastrow.com/kenzie/ttt/images/buy2.png");
     background-position: center;
 }
+#stocklist {
+}
 .about{
     width: 70%;
     margin: auto;
@@ -101,8 +103,6 @@
 .section{
     width: 18%;
     padding: 3px;
-    border: solid #D3D3D3;
-    border-width: 1px 1px 0 1px;
     background-color: aliceblue;
     overflow:hidden;
     float: left;

@@ -123,6 +123,7 @@ class CheckoutPage extends BaseClass {
 
             if(purchased) {
                 this.showMessage(`Purchased ${purchased.name} stock!`)
+                window.location.href = '/portal.html';
             } else {
                 this.errorHandler("Error purchasing stock! Try again.")
             }
