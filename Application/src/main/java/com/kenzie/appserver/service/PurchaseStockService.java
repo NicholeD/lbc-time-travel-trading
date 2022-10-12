@@ -20,14 +20,14 @@ public class PurchaseStockService {
     }
 
     public PurchasedStock purchaseStock(String userId, Stock stock) throws InsufficientResourcesException {
-        double transactionCost = stock.getQuantity()* stock.getPurchasePrice();
-        Portfolio portfolio = portfolioService.findPortfolioByUserId(userId);
+        //double transactionCost = stock.getQuantity()* stock.getPurchasePrice();
+        //Portfolio portfolio = portfolioService.findPortfolioByUserId(userId);
 
-        if (portfolio.getFunds() > transactionCost) {
-            portfolioService.updatePortfolio(portfolio, stock);
-        } else {
-            throw new InsufficientResourcesException("Not enough available funds.");
-        }
+        //if (portfolio.getFunds() > transactionCost) {
+        //    portfolioService.updatePortfolio(portfolio, stock);
+        //} else {
+        //    throw new InsufficientResourcesException("Not enough available funds.");
+        //}
 
         return new PurchasedStock(userId, stock, ZonedDateTime.now());
     }
