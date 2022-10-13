@@ -36,8 +36,8 @@ public class ContactController {
 
     @PostMapping
     public ResponseEntity<ContactResponse> addNewContact(@RequestBody ContactCreateRequest contactCreateRequest){
-        Contact contact = new Contact(contactCreateRequest.getId(), contactCreateRequest.getName(),contactCreateRequest.getEmail(),"Subject","Message");
-        contactService.addNewContact(contact);
+        Contact contact = new Contact(contactCreateRequest.getId(), contactCreateRequest.getName(),contactCreateRequest.getEmail(),contactCreateRequest.getSubject(),contactCreateRequest.getMessage());
+        //contactService.addNewContact(contact);
 
         ContactResponse contactResponse = new ContactResponse();
         contactResponse.setId(contact.getId());
