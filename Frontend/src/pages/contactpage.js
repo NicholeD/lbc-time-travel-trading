@@ -44,7 +44,7 @@ class ContactPage extends BaseClass {
     // Event Handlers --------------------------------------------------------------------------------------------------
 
     async onGetContact() {
-        let result = await this.client.getAllContact(this.errorHandler);
+        let result = await this.client.getContact(this.errorHandler);
         this.dataStore.set("contacts", result);
     }
 
@@ -52,17 +52,17 @@ class ContactPage extends BaseClass {
         // Prevent the page from refreshing on form submit
         event.preventDefault();
         //this.dataStore.set("contact", null);
-
+        let id = "userId";
         let name = document.getElementById("contactname").value;
         let email = document.getElementById("contactemail").value;
-        let subject = document.getElementById("contactsubject");
-        let message = document.getElementById("contactmessage");
+        let subject = document.getElementById("contactsubject").value;
+        let message = document.getElementById("contactmessage").value;
 
-        const createdContact = await this.client.createContact(name,email, subject,message, this.errorHandler);
+        const createdContact = await this.client.createContact(id,name,email,subject,message, this.errorHandler);
         this.dataStore.set("contact", createdContact);
 
         if (createdContact) {
-            this.showMessage(`Created ${createdContact.name}!`);
+            this.showMessage(`Message sent from ${createdContact.name}!`);
             await this.onGetContact();
         } else {
             this.errorHandler("Error creating!  Try again...");

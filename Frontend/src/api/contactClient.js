@@ -37,13 +37,14 @@ export default class ContactClient extends BaseClass {
         }
     }
 
-    async createContact(name,email,subject,message, errorCallback) {
+    async createContact(id,name,email,subject,message, errorCallback) {
         try {
             const response = await this.client.post(`/contact`, {
-                "name": name,
-                "email": email,
-                "subject": subject,
-                "message": message
+                id: id,
+                name: name,
+                email: email,
+                subject: subject,
+                message: message
             });
             return response.data;
         } catch (error) {
